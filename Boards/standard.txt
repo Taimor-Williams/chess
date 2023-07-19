@@ -1,0 +1,38 @@
+8x8
+BR 
+BKn 
+BB 
+BQ 
+BK 
+BB 
+BKn 
+BR
+BP
+BP
+BP
+BP
+BP
+BP
+BP
+BP
+empty, empty, empty, empty, empty, empty, empty, empty
+empty, empty, empty, empty, empty, empty, empty, empty
+empty, empty, empty, empty, empty, empty, empty, empty
+empty, empty, empty, empty, empty, empty, empty, empty
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WR 
+WKn
+WB
+WQ
+WK
+WB
+WKn
+WR
+
