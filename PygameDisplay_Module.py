@@ -195,6 +195,7 @@ class InteractiveGameBoard():
         if not self.selected:
             if selectedObjects == []:
                 assert(1==1)
+                return
             if selectedObjects != []:
                 print("select oject")
                 self.selected = True
@@ -202,26 +203,44 @@ class InteractiveGameBoard():
                 self.referencePieceInt = referenceObject
                 self.validCaptureSquares = self.gameBoard.getValidCapturesObject(referenceObject)
                 self.validMoveSquares = self.gameBoard.getValidMovesObject(referenceObject)
+                return
         
         # case 2 selected is true
         if self.selected:
+            # click on a validMove
             if (col,row) in self.validMoveSquares:
                 print("valid move made")
                 self.gameBoard.moveObject(self.referencePieceInt, (col,row))
                 self.selected = False
                 self.validCaptureSquares = []
                 self.validMoveSquares = []
+                return
+            # click on a valid capture
             if (col,row) in self.validCaptureSquares:
                 print("valid capture made")
                 self.gameBoard.captureObject(self.referencePieceInt, (col,row))
                 self.selected = False
                 self.validCaptureSquares = []
                 self.validMoveSquares = []
+                return
+            # click on empty square
             if selectedObjects == []:
                 print("select empty")
                 self.selected = False
                 self.validCaptureSquares = []
                 self.validMoveSquares = []
+                return
+            # click on square that has a piece
+            if selectedObjects !=[] and self:
+                print("select new piece")
+                self.selected = False
+                self.validCaptureSquares = []
+                self.validMoveSquares = []
+                return
+            
+            
+
+            
             
 
                 
