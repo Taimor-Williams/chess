@@ -698,6 +698,29 @@ class Board():
                         returnSet.add(tuple([col,row]))
             
         return returnSet
+    
+    def _castleKing(king: Piece, originalPos: tuple[int,int])->set[tuple[int,int]]:
+        """
+        @param, king which king we are considering white or black
+        @param, originalPos, 
+        @return, valid pos king can castle to
+        method to castle king
+        king can castle if king and rook both have yet to move and their are 
+        no pieces inbetween the king and rook
+        """
+
+        #check king has not moved
+        if king.color == EnumColors.White:
+            if originalPos != (5,0):
+                return
+        if king.color == EnumColors.Black:
+            if originalPos != (5,7):
+                return
+
+        # check rook has not moved and no pieces inbetween rook and king
+        # if king.color == EnumColors.White:
+        #     for 
+
 
 
     def _moveGeneral(self, directions: list[tuple[int,int]], originalPos: tuple[int,int])->set[tuple[int,int]]:

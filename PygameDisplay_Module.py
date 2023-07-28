@@ -9,8 +9,9 @@ pygame.init()
 red = (200,0,0)
 blue = (0,0,255)
 white = (255,255,255)
-green = (0,255,00)
+green = (0,255,0)
 orange= (200, 100, 0)
+black = (0,0,0)
 
 circleX = 100
 circleY = 100
@@ -101,10 +102,34 @@ def getPieceValidMoves(col:int,row:int, boardObject: Board):
         validCaptures = boardObject.capturePiece(selectPiece, (col,row))
         return (selectPiece, validMoves, validCaptures)
 
+# def drawStyleRect(surface):
+#     pygame.draw.rect(surface, (0,0,255), (x,y,150,150), 0)
+#     for i in range(4):
+#         pygame.draw.rect(surface, (0,0,0), (x-i,y-i,155,155), 1)
 
 class InteractiveGameBoard():
     """
-    AF() = 
+    AF(gameBoard, width, height, selected, validCaptureSquares, 
+    validMoveSquares, drawDict, referencePieceInt) =  
+    a clickable gameboard which displays the chess game. It references the backEnd information 
+    in "gameBoard", has width "width", height "height", indicates if a piece is currently selected with
+    "selected", displays said selected pieces valid moves in "validMoveSquares",
+    displays selected piece valid captures in "validMoveSquares", stores a reference
+    to the piece used to move it in the backEnd gameBoard in referencePieceInt, and
+    has all the pieces and images stored in "drawDict". 
+
+    rep invarient:
+        if selected == False:
+            validMoveSquares = []
+            validCaptureSquares = []
+        
+    protection from rep exposure:
+        drawSquares():
+        drawValidCaptures():
+        drawValidMoves():
+        drawPieces():
+        isClicked():
+
     """
     gameBoard: Board
     width: int
@@ -124,7 +149,6 @@ class InteractiveGameBoard():
         self.height = gameBoard.height
         self.drawDict = loadPieces("White")
         self.drawDict.update(loadPieces('Black'))
-        print(self.drawDict)
         self.validCaptureSquares = []
         self.validMoveSquares = []
         self.selected = False
@@ -158,12 +182,17 @@ class InteractiveGameBoard():
             col,row = location
             pygame.draw.rect(window, orange, [col*rectWidth,row*rectHeight, rectWidth, rectHeight])
 
+
     def drawValidMoves(self):
+
         rectWidth = 40
         rectHeight = 40 
         for location in self.validMoveSquares:
             col,row = location
-            pygame.draw.rect(window, green, [col*rectWidth,row*rectHeight, rectWidth, rectHeight])
+            x = col*rectWidth
+            y = row*rectHeight
+            pygame.draw.rect(window, green, [x,y, rectWidth, rectHeight])
+            pygame.draw.rect(window,black, (x,y,rectWidth,rectHeight), 2)
 
     def drawPieces(self):
         """
